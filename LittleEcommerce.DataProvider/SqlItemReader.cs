@@ -40,24 +40,20 @@ namespace LittleEcommerce.DataProvider
                 var price = Convert.ToDecimal(read["Price"]);
 
                 var item = lista.Where(x => x.C8 == c8).SingleOrDefault();
-                if (item != null)
+                if (item == null)
                 {
-                    var variant = item.VariantList.Where(x => x.C2 == c2).SingleOrDefault();
-                    if (variant != null)
-                        variant.SizeList.Add(AddSizeClass(country, label, qta));
-                    else
-                        item.VariantList.Add(AddVariant(c2, country, label, qta, url));
-                }
-                else
-                {
-                    item = AddNewItem(c8, c2, country, label, qta, url, brand, name, price); 
+                    item = AddNewItem(c8, brand, name, price);
                     lista.Add(item);
                 }
+                var variant = item.VariantList.Where(x => x.C2 == c2).SingleOrDefault();
+                if (variant == null)
+                    item.VariantList.Add(AddVariant(c2, url));
+                variant.SizeList.Add(AddSizeClass(country, label, qta));
             }
             return lista;
         }
 
-     
+
         public Item GetData(params string[] parameters)
         {
 
@@ -86,36 +82,28 @@ namespace LittleEcommerce.DataProvider
             var brand = read["Brand"].ToString();
             var name = read["NameItem"].ToString();
             var price = Convert.ToDecimal(read["Price"]);
-            return AddNewItem(c8, c2, country, label, qta, url, brand, name, price);
-
-        }
-
-        private static Variant AddVariant(string c2, string country, string label, int qta, string url)
-        {
-            Variant variant = new(c2)
-            {
-                Url = url
-            };
+            var item = AddNewItem(c8, brand, name, price);
+            var variant = AddVariant(c2, url);
             variant.SizeList.Add(AddSizeClass(country, label, qta));
-
-            return variant;
+            item.VariantList.Add(AddVariant(c2, url));
+            return item;
         }
 
-        private static SizeClass AddSizeClass(string country, string label, int qta) => new SizeClass(country, label)
+        private static Variant AddVariant(string c2, string url) => new(c2)
+        {
+            Url = url
+        };
+
+        private static SizeClass AddSizeClass(string country, string label, int qta) => new(country, label)
         {
             Qta = qta
         };
-        private static Item AddNewItem(string c8, string c2, string country, string label, int qta, string url, string brand, string name, decimal price)
+        private static Item AddNewItem(string c8, string brand, string name, decimal price) => new(c8)
         {
-            Item item = new Item(c8)
-            {
-                Brand = brand,
-                NameItem = name,
-                Prezzo = price
-            };
-            item.VariantList.Add(AddVariant(c2, country, label, qta, url));
-            return item;
-        }
+            Brand = brand,
+            NameItem = name,
+            Prezzo = price
+        };
 
     }
 }
