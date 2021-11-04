@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace LitlleEcommerce.Core
 {
-    public class YourAlternativeColour : Advisor
+    public class YourAlternativeColour: Advisor
     {
         public YourAlternativeColour(IItemReader itemReader) : base(itemReader)
         {
@@ -14,7 +14,7 @@ namespace LitlleEcommerce.Core
 
         public override IEnumerable<Item> ProcessAdv(string c8, string c2, string label, string country)
         {
-            var itemList = _itemReader.GetSuggestedItemByVariant(label, country, c2);
+            var itemList = _itemReader.GetSuggestedItem(label, country, c8);
             return !itemList.Any() ? _advisor.ProcessAdv(c8, c2, label, country) : itemList;
         }
     }

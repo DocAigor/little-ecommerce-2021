@@ -17,7 +17,7 @@ namespace LittleEcommerce.DataProvider
         {
             using var connection = Connection.GetConnection(_connectionString);
             connection.Open();
-            string query = @"SELECT i.NameItem, i.Price, i.Brand, i.C8, v.C2, sc.Label, sc.Qta, sc.Country
+            string query = @"SELECT i.NameItem, i.Price, i.Brand, i.C8, v.C2, sc.Label, sc.Qta, sc.Country,v.Url
                             FROM Item i
                             JOIN Variant v ON i.C8 = v.C8
                             JOIN SizeClass sc ON sc.C2 = v.C2 AND sc.C8 = v.C8
@@ -46,8 +46,10 @@ namespace LittleEcommerce.DataProvider
                     lista.Add(item);
                 }
                 var variant = item.VariantList.Where(x => x.C2 == c2).SingleOrDefault();
-                if (variant == null)
-                    item.VariantList.Add(AddVariant(c2, url));
+                if (variant == null) {
+                    variant = AddVariant(c2, url);
+                    item.VariantList.Add(variant);
+                }
                 variant.SizeList.Add(AddSizeClass(country, label, qta));
             }
             return lista;
@@ -59,7 +61,7 @@ namespace LittleEcommerce.DataProvider
 
             using var connection = Connection.GetConnection(_connectionString);
             connection.Open();
-            string query = @"SELECT i.NameItem, i.Price, i.Brand, i.C8, v.C2, sc.Label, sc.Qta, sc.Country
+            string query = @"SELECT i.NameItem, i.Price, i.Brand, i.C8, v.C2, sc.Label, sc.Qta, sc.Country, v.Url
                             FROM Item i
                             JOIN Variant v ON i.C8 = v.C8 AND i.C8=@C8 AND v.C2=@C2
                             JOIN SizeClass sc ON sc.C2 = v.C2 AND sc.C8 = v.C8
@@ -70,8 +72,7 @@ namespace LittleEcommerce.DataProvider
             command.Parameters.AddWithValue("@Country", parameters[2]);
             command.Parameters.AddWithValue("@Label", parameters[3]);
             var read = command.ExecuteReader();
-            read.Read();
-            if (read == null) return null;
+            if (!read.Read()) return null;
 
             var c8 = read["C8"].ToString();
             var c2 = read["C2"].ToString();

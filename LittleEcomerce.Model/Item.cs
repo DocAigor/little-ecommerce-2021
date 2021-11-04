@@ -12,6 +12,7 @@ namespace LittleEcommerce.Model
         public Item(string c8)
         {
             C8 = c8;
+            VariantList = new List<Variant>();
         }
 
     }
