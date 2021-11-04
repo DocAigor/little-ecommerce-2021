@@ -1,4 +1,5 @@
-﻿using LittleEcommerce.DataProvider;
+﻿using LittleEcommerce.Audit;
+using LittleEcommerce.DataProvider;
 using LittleEcommerce.Model;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace LitlleEcommerce.Core
 {
     public class FallbackItem : Advisor
     {
-        public FallbackItem(IItemReader itemReader) : base(itemReader)
+        public FallbackItem(IItemReader itemReader, IAudit audit) : base(itemReader, audit)
         {
 
         }

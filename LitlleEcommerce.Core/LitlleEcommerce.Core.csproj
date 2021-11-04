@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LittleEcomerce.Model\LittleEcommerce.Model.csproj" />
+    <ProjectReference Include="..\LittleEcommerce.Audit\LittleEcommerce.Audit.csproj" />
     <ProjectReference Include="..\LittleEcommerce.DataProvider\LittleEcommerce.DataProvider.csproj" />
   </ItemGroup>
 

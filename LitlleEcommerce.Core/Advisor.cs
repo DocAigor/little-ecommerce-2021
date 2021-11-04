@@ -1,4 +1,5 @@
-﻿using LittleEcommerce.DataProvider;
+﻿using LittleEcommerce.Audit;
+using LittleEcommerce.DataProvider;
 using LittleEcommerce.Model;
 using System.Collections.Generic;
 
@@ -10,10 +11,12 @@ namespace LitlleEcommerce.Core
         protected Advisor _advisor;
 
         protected readonly IItemReader _itemReader;
+        protected readonly IAudit _audit;
 
-        protected Advisor(IItemReader itemReader)
+        protected Advisor(IItemReader itemReader, IAudit audit)
         {
             _itemReader = itemReader;
+            _audit = audit;
         }
 
         public void NextAdv(Advisor adv) => _advisor = adv;

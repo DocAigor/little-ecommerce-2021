@@ -1,4 +1,5 @@
-﻿using LittleEcommerce.DataProvider;
+﻿using LittleEcommerce.Audit;
+using LittleEcommerce.DataProvider;
 using LittleEcommerce.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace LitlleEcommerce.Core
 {
     public class YourAlternativeItem : Advisor
     {
-        public YourAlternativeItem(IItemReader itemReader) : base(itemReader)
+        public YourAlternativeItem(IItemReader itemReader, IAudit audit) : base(itemReader, audit)
         {
         }
 

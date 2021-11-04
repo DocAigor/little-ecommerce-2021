@@ -1,4 +1,5 @@
-﻿using LittleEcommerce.DataProvider;
+﻿using LittleEcommerce.Audit;
+using LittleEcommerce.DataProvider;
 using LittleEcommerce.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace LitlleEcommerce.Core
 {
     public class YourAlternativeColour: Advisor
     {
-        public YourAlternativeColour(IItemReader itemReader) : base(itemReader)
+        public YourAlternativeColour(IItemReader itemReader,IAudit audit) : base(itemReader, audit)
         {
         }
 

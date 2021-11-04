@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitlleEcommerce.Core", "Lit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleEcommerce.Console", "LittleEcommerce.Console\LittleEcommerce.Console.csproj", "{55E1FC5E-9D32-4573-A007-7B3DB0570E44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleEcommerce.Audit", "LittleEcommerce.Audit\LittleEcommerce.Audit.csproj", "{E3C5EA55-E868-4370-9F54-6A387FE3007F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{55E1FC5E-9D32-4573-A007-7B3DB0570E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55E1FC5E-9D32-4573-A007-7B3DB0570E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55E1FC5E-9D32-4573-A007-7B3DB0570E44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3C5EA55-E868-4370-9F54-6A387FE3007F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3C5EA55-E868-4370-9F54-6A387FE3007F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3C5EA55-E868-4370-9F54-6A387FE3007F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3C5EA55-E868-4370-9F54-6A387FE3007F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
